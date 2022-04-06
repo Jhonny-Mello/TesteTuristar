@@ -1,0 +1,30 @@
+package com.br.Turistar.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.br.Turistar.model.Usuarios;
+import com.br.Turistar.repository.UsuariosRepository;
+
+public class UsuariosService {
+
+	@Autowired
+	UsuariosRepository usuariosRepository;
+	
+	public ArrayList<Usuarios> getAllUsuarios(){
+		
+	ArrayList<Usuarios> usuarios = new ArrayList<>();
+	usuariosRepository.findAll().forEach(macaco -> usuarios.add(macaco));
+	return usuarios;
+	}
+
+	public Usuarios getUsuariosById(Long id) {
+		return usuariosRepository.getById(id);
+	}
+	
+	public void deleteUsuarios(Long id){
+		
+		usuariosRepository.deleteById(id);
+	} 
+}

@@ -1,0 +1,11 @@
+package com.br.Turistar.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.br.Turistar.repository.UsuariosRepository;
+
+public class UsuariosService {
+
+	@Autowired
+	UsuariosRepository usuariosRepository;
+}
