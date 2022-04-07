@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.br.Turistar.exceptions.UsuariosNotFoundException;
+import com.br.Turistar.exceptions.usuariosAlreadyRegisteredException;
 import com.br.Turistar.model.Usuarios;
 import com.br.Turistar.service.UsuariosService;
 
@@ -26,11 +28,11 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/usuarios/{id}")
-	public Usuarios getUsuariosById(@PathVariable Long id) {
+	public Usuarios getUsuariosById(@PathVariable Long id) throws UsuariosNotFoundException {
 		return usuariosService.getUsuariosById(id);
 	}
 	@PutMapping("/usuarios/{id}")
-	public Usuarios updateUsuarios(@PathVariable Long id,@RequestBody Usuarios usuarios) {
+	public Usuarios updateUsuarios(@PathVariable Long id,@RequestBody Usuarios usuarios) throws usuariosAlreadyRegisteredException {
 		
 		return usuariosService.updateUsuarios(usuarios,id);
 	}
@@ -47,3 +49,4 @@ public class UsuariosController {
 		usuariosService.deleteAllUsuarios();
 	}
 }
+
