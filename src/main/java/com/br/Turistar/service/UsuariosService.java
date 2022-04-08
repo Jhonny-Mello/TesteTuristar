@@ -1,26 +1,26 @@
 package com.br.Turistar.service;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.br.Turistar.exceptions.UsuariosNotFoundException;
 import com.br.Turistar.exceptions.usuariosAlreadyRegisteredException;
 import com.br.Turistar.model.Usuarios;
 import com.br.Turistar.repository.UsuariosRepository;
 
+@Service
 public class UsuariosService {
 
 	@Autowired
 	UsuariosRepository usuariosRepository;
 	
-	public ArrayList<Usuarios> getAllUsuarios(){
-		
-	ArrayList<Usuarios> usuarios = new ArrayList<>();
+	public List<Usuarios> getAllUsuarios(){
+			
+		return usuariosRepository.findAll();
 	
-	usuariosRepository.findAll().forEach(user -> usuarios.add(user));
-	return usuarios;
 	}
 
 	public Usuarios getUsuariosById(Long id) throws UsuariosNotFoundException{

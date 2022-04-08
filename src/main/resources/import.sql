@@ -53,3 +53,14 @@ insert into rotas (id, inicio_la, inicio_lo,way_point1la,way_point1lo,way_point2
 insert into rotas (id, inicio_la, inicio_lo,way_point1la,way_point1lo,way_point2la,way_point2lo,way_point3la,way_point3lo,way_point4la,way_point4lo,way_point5la,way_point5lo, fim_la, fim_lo,fim) values ( 21,"-8.062037994190016","-34.875087131061385","-8.062610785890442","-34.87267935410819","-8.062631956800926","-34.873206986846256","-8.062802333955068","-34.87304136891114","-8.062542248685899","-34.87126440140223","-8.06127581017684","-34.871562144194414", "-8.053161998593945","-34.871107782151206","Museu Militar do Forte do Brum");
 insert into rotas (id, inicio_la, inicio_lo,way_point1la,way_point1lo,way_point2la,way_point2lo,way_point3la,way_point3lo,way_point4la,way_point4lo,way_point5la,way_point5lo, fim_la, fim_lo,fim) values ( 22,"-8.063915625936117","-34.875509202226006","-8.063100699809878","-34.874142040458494","-8.060304388366147","-34.86998522100362","-8.06271228840105","-34.87208590219691","-8.060757713711226","-34.8708449079922","-8.06062058242095","-34.87190375694858", "-8.053161998593945","-34.871107782151206","Museu Militar do Forte do Brum");
 insert into rotas (id, inicio_la, inicio_lo,way_point1la,way_point1lo,way_point2la,way_point2lo,way_point3la,way_point3lo,way_point4la,way_point4lo,way_point5la,way_point5lo, fim_la, fim_lo,fim) values ( 23,"-8.067096431538905","-34.873914358049355","-8.065262547461575","-34.87351407714625","-8.064638461392356","-34.87288681525032","-8.062371752985843","-34.87150284751811","-8.06069633769921","-34.87160651281199","-8.054838813241373","-34.870290586740374", "-8.053161998593945","-34.871107782151206","Museu Militar do Forte do Brum");
+
+/* Insert em usuarios*/
+
+insert into usuarios (id,name,email,age,cpf) values (1,'joni','shndaidhna@gmail.com',24,'13324393493');
+insert into usuarios (id,name,email,age,cpf) values (2,'enrico','mairosd@gmail.com',54,'21783271323');
+insert into usuarios (id,name,email,age,cpf) values (3,'joni','shndaidhna@gmail.com',24,'13324393493');
+insert into usuarios (id,name,email,age,cpf) values (4,'enrico','mairosd@gmail.com',54,'21783271323');
+insert into usuarios (id,name,email,age,cpf) values (5,'joni','shndaidhna@gmail.com',24,'13324393493');
+insert into usuarios (id,name,email,age,cpf) values (6,'enrico','mairosd@gmail.com',54,'21783271323');
+insert into usuarios (id,name,email,age,cpf) values (7,'joni','shndaidhna@gmail.com',24,'13324393493');
+insert into usuarios (id,name,email,age,cpf) values (8,'enrico','mairosd@gmail.com',54,'21783271323');

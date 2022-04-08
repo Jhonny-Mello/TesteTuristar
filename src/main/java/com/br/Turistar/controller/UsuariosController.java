@@ -1,6 +1,7 @@
 package com.br.Turistar.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +23,7 @@ public class UsuariosController {
 	UsuariosService usuariosService;
 	
 	@GetMapping("/usuarios")
-	public ArrayList<Usuarios> getAllUsuarios(){
+	public List<Usuarios> getAllUsuarios(){
 		
 		return usuariosService.getAllUsuarios();
 	}

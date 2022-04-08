@@ -18,6 +18,10 @@ public class Usuarios {
 	private int age;
 	private String cpf;
 	
+	public Usuarios() {
+		super();
+	}
+	
 	public Usuarios(Long id, String name, String email, int age,String cpf) {
 		super();
 		this.id = id;

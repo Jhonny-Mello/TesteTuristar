@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 public class UsuariosNotFoundException extends Exception{
 
 	   public UsuariosNotFoundException(String name) {
-	        super(String.format("Beer with name %s not found in the system.", name));
+	        super(String.format("User with name %s not found in the system.", name));
 	    }
 
 	    public UsuariosNotFoundException(Long id) {
-	        super(String.format("Beer with id %s not found in the system.", id));
+	        super(String.format("User with id %s not found in the system.", id));
 
 	    }
 }
