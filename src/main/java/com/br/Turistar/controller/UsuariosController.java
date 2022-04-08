@@ -29,7 +29,7 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/usuarios/{id}")
-	public Usuarios getUsuariosById(@PathVariable Long id) throws UsuariosNotFoundException {
+	public Usuarios getUsuariosById(@PathVariable Long id){
 		return usuariosService.getUsuariosById(id);
 	}
 	@PutMapping("/usuarios/{id}")

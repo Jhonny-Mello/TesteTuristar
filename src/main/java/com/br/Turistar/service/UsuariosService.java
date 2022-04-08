@@ -23,8 +23,7 @@ public class UsuariosService {
 	
 	}
 
-	public Usuarios getUsuariosById(Long id) throws UsuariosNotFoundException{
-		verifyIfExists(id);
+	public Usuarios getUsuariosById(Long id){
 		
 		return usuariosRepository.getById(id);
 	}
