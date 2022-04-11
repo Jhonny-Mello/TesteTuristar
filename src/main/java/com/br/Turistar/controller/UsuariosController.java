@@ -2,6 +2,7 @@ package com.br.Turistar.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +30,8 @@ public class UsuariosController {
 	}
 	
 	@GetMapping("/usuarios/{id}")
-	public Usuarios getUsuariosById(@PathVariable Long id){
+	public Optional<Usuarios> getUsuariosById(@PathVariable Long id) throws UsuariosNotFoundException{
+	
 		return usuariosService.getUsuariosById(id);
 	}
 	@PutMapping("/usuarios/{id}")
@@ -40,7 +42,6 @@ public class UsuariosController {
 	
 	@DeleteMapping("/usuarios/{id}")
 	public void deleteUsuarios(@PathVariable Long id) {
-		
 		usuariosService.deleteUsuarios(id);
 	}
 	

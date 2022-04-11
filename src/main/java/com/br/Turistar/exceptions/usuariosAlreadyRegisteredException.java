@@ -7,6 +7,6 @@ import org.springframework.http.HttpStatus;
 public class usuariosAlreadyRegisteredException extends Exception{
 
 	 public usuariosAlreadyRegisteredException(String Username) {
-	        super(String.format("User with name "+Username+" already registered in the system."));
+	        super(String.format("User with name "+ Username +" already registered in the system."));
 	    }
 }

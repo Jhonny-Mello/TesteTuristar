@@ -1,7 +1,8 @@
 package com.br.Turistar;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.isNull;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,22 +24,21 @@ class UsuariosTestes {
 	UsuariosService usuarioService;
 
 	@Test
-	void TesteUserById() throws UsuariosNotFoundException {
+	void TesteUserDeleteById() throws UsuariosNotFoundException {
 
-		Usuarios usuario = usuarioService.getUsuariosById(1L);
-		System.out.println(usuario.getName());
-		assertEquals("24", String.valueOf(usuario.getAge()));
-		// assertEquals("13324393493", usuario.getCpf());
-		// assertEquals("shndaidhna@gmail.com ", usuario.getEmail());
-		// assertEquals("joni", usuario.getName());
-
+		usuarioService.deleteUsuarios(1L);
+		assertEquals(Optional.empty(), usuarioService.getUsuariosById(1L));
 	}
 
 	@Test
-	void TesteUserDeleteById() throws UsuariosNotFoundException {
-		Usuarios usuario = usuarioService.getUsuariosById(1L);
-		usuarioService.deleteUsuarios(1L);
-		assertEquals(null, usuarioService.getUsuariosById(1L));
+	void TesteUserById() throws UsuariosNotFoundException {
+
+		Optional<Usuarios> usuario = usuarioService.getUsuariosById(3L);
+		assertNotEquals(Optional.empty(), usuario);
+		assertEquals(24, usuario.get().getAge());
+		assertEquals("joni",usuario.get().getName());
+		assertEquals("13324393493",usuario.get().getCpf());
+		assertEquals("shndaidhna@gmail.com",usuario.get().getEmail());
 	}
 
 }

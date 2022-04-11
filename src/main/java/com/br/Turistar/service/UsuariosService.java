@@ -23,11 +23,11 @@ public class UsuariosService {
 	
 	}
 
-	public Usuarios getUsuariosById(Long id){
-		
-		return usuariosRepository.getById(id);
-	}
-	
+	public Optional<Usuarios> getUsuariosById(Long id) throws UsuariosNotFoundException{
+
+        return usuariosRepository.findById(id);
+    }
+
 	public Usuarios updateUsuarios(Usuarios usuarios,Long id) throws usuariosAlreadyRegisteredException {
         
 		verifyIfIsAlreadyRegistered(usuarios.getName());
@@ -55,7 +55,6 @@ public class UsuariosService {
             throw new usuariosAlreadyRegisteredException(name);
         }
     }
-
     private Usuarios verifyIfExists(Long id) throws UsuariosNotFoundException{ 
         return usuariosRepository.findById(id)
                 .orElseThrow(() -> new UsuariosNotFoundException(id));

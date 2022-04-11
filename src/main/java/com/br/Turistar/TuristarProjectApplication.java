@@ -25,13 +25,10 @@ public class TuristarProjectApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
 		
 		Usuarios usuario = new Usuarios();
 		System.out.println(usuario.getName());
 		System.out.println(usuario.getClass().getSimpleName());
 	}
 	
-	
-
 }
