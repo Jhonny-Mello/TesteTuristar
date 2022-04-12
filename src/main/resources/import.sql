@@ -1,4 +1,3 @@
-
 /* Insert em agremiações */
 
 insert into agremiacoes (id, endereco, modalidade, nome) values (1, 'Guadalupe, Olinda','Afoxé', 'Alafin Oyó');
@@ -65,3 +64,4 @@ insert into usuarios (id,name,email,age,cpf) values (5,'joni','shndaidhna@gmail.
 insert into usuarios (id,name,email,age,cpf) values (6,'enrico','mairosd@gmail.com',54,'21783271323');
 insert into usuarios (id,name,email,age,cpf) values (7,'joni','shndaidhna@gmail.com',24,'13324393493');
 insert into usuarios (id,name,email,age,cpf) values (8,'enrico','mairosd@gmail.com',54,'21783271323');
+insert into usuarios (id,name,email,age,cpf) values (9,'ademir','shndaidhna@gmail.com',24,'13324393493');

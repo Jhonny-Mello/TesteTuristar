@@ -27,6 +27,11 @@ public class UsuariosService {
 
         return usuariosRepository.findById(id);
     }
+	
+	public Usuarios postUsuarios(Usuarios usuario) {
+		return usuariosRepository.save(usuario);
+	}
+	
 
 	public Usuarios updateUsuarios(Usuarios usuarios,Long id) throws usuariosAlreadyRegisteredException {
         
