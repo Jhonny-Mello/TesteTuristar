@@ -11,8 +11,10 @@ import javax.validation.constraints.NotNull;
 public class Usuarios {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	private Long id;
+	@NotNull
 	@Column(name = "name")
 	private String name;
 	@Column(name = "email")

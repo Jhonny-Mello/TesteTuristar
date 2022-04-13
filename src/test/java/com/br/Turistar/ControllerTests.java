@@ -4,13 +4,15 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -18,13 +20,12 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.br.Turistar.controller.BaresController;
+import com.br.Turistar.exceptions.UsuariosNotFoundException;
 import com.br.Turistar.model.Usuarios;
 import com.br.Turistar.service.UsuariosService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.cucumber.java.After;
-
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 public class ControllerTests {
 
@@ -43,6 +44,13 @@ public class ControllerTests {
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(baresController).build();
+	}
+
+	@Test
+	void TesteUserDeleteById() throws UsuariosNotFoundException {
+
+		usuarioService.deleteUsuarios(1L);
+		assertEquals(Optional.empty(), usuarioService.getUsuariosById(1L));
 	}
 
 	@Test
@@ -73,10 +81,15 @@ public class ControllerTests {
 	public void testVerificaNome() throws Exception {
 
 		String stringcomparacao = "a";
-		Usuarios usuario = usuarioService.getUsuariosById(1L).get();
+		Usuarios usuario = new Usuarios();
+		usuario.setName("helielson");
+		usuario.setAge(24);
+		usuario.setCpf("13324353421");
+		usuario.setEmail("ovo@gmail.com");
+		
 
 		assertEquals(usuario.getName().getClass().getSimpleName(), stringcomparacao.getClass().getSimpleName());
-
+		usuarioService.postUsuarios(usuario);
 	}
 
 	// verifica funcionamento e conteudo da rota - Verifica se o conteudo é
@@ -101,7 +114,7 @@ public class ControllerTests {
 
 	// verifica funcionamento do método deleteAll() em usuarios e conteudo da rota//
 
-	@After
+	@Test
 	public void testDeleteAllUsuariosByIdController() throws Exception {
 		this.mockMvc.perform(MockMvcRequestBuilders.delete("/usuarios"))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andExpect((MockMvcResultMatchers.status().is(200)))
@@ -110,17 +123,18 @@ public class ControllerTests {
 
 	// Verifica funcionamento do método POST em Usuarios//
 
-	@Before
+	@Test
 	public void testPostUsuarios() throws Exception {
 
 		this.mockMvc
 				.perform(MockMvcRequestBuilders.post("/usuarios")
 						.content(asJsonString(new Usuarios(null, "jonilson", "heihei@gmail.com", 2, "1234535623")))
-						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isCreated()).andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-				.andDo(print());				
+						.contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
+				.andDo(print()).andExpect((MockMvcResultMatchers.status().is(200)));				
 	}
-
+	
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);
