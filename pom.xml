@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>11</java.version>
 	</properties>
-	<dependencies>
+	<dependencies>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -27,6 +27,12 @@
 			<artifactId>java-client</artifactId>
 			<version>5.0.4</version>
 		</dependency>
+		<dependency>
+         <groupId>io.rest-assured</groupId>
+         <artifactId>rest-assured</artifactId>
+         <version>4.2.0</version>
+         <scope>test</scope>
+      </dependency>
 
 		<dependency>
 			<groupId>junit</groupId>

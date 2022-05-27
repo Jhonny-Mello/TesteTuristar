@@ -2,10 +2,7 @@ package com.br.Turistar;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -20,14 +17,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.br.Turistar.controller.BaresController;
-import com.br.Turistar.exceptions.UsuariosNotFoundException;
 import com.br.Turistar.model.Usuarios;
 import com.br.Turistar.service.UsuariosService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class ControllerTests {
+public class ControllerTests extends UsuariosService{
 
 	@Autowired
 	UsuariosService usuarioService;
@@ -47,16 +43,10 @@ public class ControllerTests {
 	}
 
 	@Test
-	void TesteUserDeleteById() throws UsuariosNotFoundException {
-
-		usuarioService.deleteUsuarios(1L);
-		assertEquals(Optional.empty(), usuarioService.getUsuariosById(1L));
-	}
-
-	@Test
 	public void testGetBaresController() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/bares")).andExpect(MockMvcResultMatchers.status().isOk());
-		
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/bares"))
+			.andExpect(MockMvcResultMatchers.status().isOk());
+
 	}
 
 	@Test
@@ -67,12 +57,16 @@ public class ControllerTests {
 
 	@Test
 	public void testGetUsuariosController() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/usuarios")).andExpect(MockMvcResultMatchers.status().isOk());
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/usuarios"))
+			.andExpect(MockMvcResultMatchers.status()
+					.isOk());
 	}
 
 	@Test
 	public void testGetRotasController() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/rotas")).andExpect(MockMvcResultMatchers.status().isOk());
+		this.mockMvc.perform(MockMvcRequestBuilders.get("/rotas"))
+			.andExpect(MockMvcResultMatchers.status()
+					.isOk());
 	}
 
 	// verifica se valor nome do usuário é do tipo String()//
@@ -83,10 +77,6 @@ public class ControllerTests {
 		String stringcomparacao = "a";
 		Usuarios usuario = new Usuarios();
 		usuario.setName("helielson");
-		usuario.setAge(24);
-		usuario.setCpf("13324353421");
-		usuario.setEmail("ovo@gmail.com");
-		
 
 		assertEquals(usuario.getName().getClass().getSimpleName(), stringcomparacao.getClass().getSimpleName());
 		usuarioService.postUsuarios(usuario);
@@ -103,7 +93,8 @@ public class ControllerTests {
 						"{\"id\":1,\"name\":\"joni\",\"email\":\"shndaidhna@gmail.com\",\"age\":24,\"cpf\":\"13324393493\"}"))));
 	}
 
-	// verifica funcionamento do método deleteById() em usuarios e conteudo da rota//
+	// verifica funcionamento do método deleteById() em usuarios e conteudo da
+	// rota//
 
 	@Test
 	public void testDeleteUsuariosByIdController() throws Exception {
@@ -129,12 +120,12 @@ public class ControllerTests {
 		this.mockMvc
 				.perform(MockMvcRequestBuilders.post("/usuarios")
 						.content(asJsonString(new Usuarios(null, "jonilson", "heihei@gmail.com", 2, "1234535623")))
-						.contentType(MediaType.APPLICATION_JSON)
-						.accept(MediaType.APPLICATION_JSON))
+						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.jsonPath("$.id").exists())
-				.andDo(print()).andExpect((MockMvcResultMatchers.status().is(200)));				
-	}
+				.andExpect((MockMvcResultMatchers.status().is(200)));
 	
+	}
+
 	public static String asJsonString(final Object obj) {
 		try {
 			return new ObjectMapper().writeValueAsString(obj);
